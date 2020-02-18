@@ -207,7 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48d301422c17d224dbefd92ba1ef275d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedProperty: 0
+  selectedProperty: 145
   updateType: 0
   source: {fileID: 0}
   follower: {fileID: 0}
