@@ -8,3 +8,7 @@
 /AttributeCollection/Packages
 /AttributeCollection/ProjectSettings
 /AttributeCollection/Temp
+/AttributeCollection/.vs
+.vsconfig
+*.csproj
+AttributeCollection/.vs
