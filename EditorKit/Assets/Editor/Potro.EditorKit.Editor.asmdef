@@ -1,0 +1,15 @@
+{
+    "name": "Potro.EditorKit.Editor",
+    "references": [
+        "GUID:d106bbcf3a8ad494593b3ca0d6581e1c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

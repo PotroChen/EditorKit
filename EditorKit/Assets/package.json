@@ -1,0 +1,10 @@
+{
+    "name": "com.Potro.EditorKit",
+    "version": "0.0.1",
+    "displayName": "Editor Kit",
+    "description": "My Editor Kit",
+    "author": {
+        "name": "Potro",
+        "email": "1400539511@qq.com"
+    }
+}
