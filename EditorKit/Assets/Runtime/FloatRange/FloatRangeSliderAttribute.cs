@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[System.AttributeUsage(System.AttributeTargets.Field, Inherited = false)]
 public class FloatRangeSliderAttribute : PropertyAttribute
 {
     public float Min { get; private set; }

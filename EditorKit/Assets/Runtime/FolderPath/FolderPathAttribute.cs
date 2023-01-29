@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
+[AttributeUsage(AttributeTargets.Field, Inherited = false)]
 public class FolderPathAttribute : PropertyAttribute
 {
 	public string defaultPath = "";

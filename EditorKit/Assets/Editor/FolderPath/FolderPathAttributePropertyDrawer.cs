@@ -27,6 +27,10 @@ public class FolderPathAttributePropertyDrawer : PropertyDrawer
 			folder = EditorUtility.SaveFolderPanel("Select a folder", folder, "");
 			if(!string.IsNullOrEmpty(folder))
 				property.stringValue = folder;
+
+			property.serializedObject.ApplyModifiedProperties();//由于调用了GUIUtility.ExitGUI，后面序列化操作不会进行，手动执行一下。
+			GUIUtility.ExitGUI();//终止后面其他的GUI逻辑，不然调用EditorUtility.SaveFolderPanel会导致unity抛异常
 		}
+		
 	}
 }
