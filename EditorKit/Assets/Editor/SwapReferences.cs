@@ -79,19 +79,9 @@ public class SwapReferences : EditorWindow
         string firstName = firstObject.name;
         string secondName = secondObject.name;
         Object tempObject = Object.Instantiate(firstObject);
-        if (tempObject is Mesh tempMesh)//Mesh比较特殊，Copy之前要先Clear掉(不然,顶点位置不会更改)
-            tempMesh.Clear();
-
+		
         EditorUtility.CopySerialized(firstObject, tempObject);
-
-        if (firstObject is Mesh firstMesh)
-            firstMesh.Clear();
-
         EditorUtility.CopySerialized(secondObject, firstObject);
-
-        if (secondObject is Mesh secondMesh)
-            secondMesh.Clear();
-
         EditorUtility.CopySerialized(tempObject, secondObject);
 
         DestroyImmediate(tempObject, true);
