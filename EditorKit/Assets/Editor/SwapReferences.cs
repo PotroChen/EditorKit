@@ -7,7 +7,7 @@ public class SwapReferences : EditorWindow
     private Object firstObject;
     private Object secondObject;
 
-    [MenuItem("EditorKit/Í¨ÓÃ¹¤¾ß/»¥»»ÒıÓÃ", priority = 1)]
+    [MenuItem("EditorKit/é€šç”¨å·¥å…·/äº’æ¢å¼•ç”¨", priority = 1)]
     static void Init()
     {
         SwapReferences window = (SwapReferences)EditorWindow.GetWindow(typeof(SwapReferences));
@@ -16,12 +16,12 @@ public class SwapReferences : EditorWindow
 
     void OnGUI()
     {
-        GUILayout.Label("Ñ¡ÔñÁ½¸ö×ÊÔ´»¥»»ËüÃÇµÄÒıÓÃ", EditorStyles.boldLabel);
+        GUILayout.Label("é€‰æ‹©ä¸¤ä¸ªèµ„æºäº’æ¢å®ƒä»¬çš„å¼•ç”¨", EditorStyles.boldLabel);
 
-        firstObject = EditorGUILayout.ObjectField("×ÊÔ´1", firstObject, typeof(Object), false);
-        secondObject = EditorGUILayout.ObjectField("×ÊÔ´2", secondObject, typeof(Object), false);
+        firstObject = EditorGUILayout.ObjectField("èµ„æº1", firstObject, typeof(Object), false);
+        secondObject = EditorGUILayout.ObjectField("èµ„æº2", secondObject, typeof(Object), false);
 
-        if (GUILayout.Button("»¥»»ÒıÓÃ"))
+        if (GUILayout.Button("äº’æ¢å¼•ç”¨"))
         {
             if (firstObject == null || secondObject == null)
                 return;
@@ -37,7 +37,7 @@ public class SwapReferences : EditorWindow
     }
 
     /*
-     * Ö»Ö§³ÖÆÕÍ¨Ô¤ÖÆÌå²»Ö§³ÖModelÔ¤ÖÆÌå
+     * åªæ”¯æŒæ™®é€šé¢„åˆ¶ä½“ä¸æ”¯æŒModelé¢„åˆ¶ä½“
      */
     static void SwapGUIDsForObjects_GameObject(Object firstObject, Object secondObject)
     {
@@ -50,8 +50,8 @@ public class SwapReferences : EditorWindow
         Object tempObjA = Object.Instantiate(firstObject);
         Object tempObjB = Object.Instantiate(secondObject);
 
-        //½«BµÄÊı¾İ->A(meta²»±ä)
-        //½«AµÄÊı¾İ->B(meta²»±ä)
+        //å°†Bçš„æ•°æ®->A(metaä¸å˜)
+        //å°†Açš„æ•°æ®->B(metaä¸å˜)
         PrefabUtility.SaveAsPrefabAsset((GameObject)tempObjB, firstPath);
         PrefabUtility.SaveAsPrefabAsset((GameObject)tempObjA, secondPath);
 
@@ -63,8 +63,8 @@ public class SwapReferences : EditorWindow
         AssetDatabase.MoveAsset(firstPath, tempPath);
         AssetDatabase.MoveAsset(secondPath, firstPath);
         AssetDatabase.MoveAsset(tempPath, secondPath);
-        //×îÖÕ½á¹û:AµÄÊı¾İ±ä³ÉÁËB£¬Â·¾¶Ò²ÊÇB£¬Ö»ÓĞmeta»¹ÊÇÔ­À´µÄ£¬Í¬ÀíBÒ²ÊÇ¡£
-        //ÒÔÕâÖÖ·½Ê½»¥»»meta
+        //æœ€ç»ˆç»“æœ:Açš„æ•°æ®å˜æˆäº†Bï¼Œè·¯å¾„ä¹Ÿæ˜¯Bï¼Œåªæœ‰metaè¿˜æ˜¯åŸæ¥çš„ï¼ŒåŒç†Bä¹Ÿæ˜¯ã€‚
+        //ä»¥è¿™ç§æ–¹å¼äº’æ¢meta
         AssetDatabase.Refresh();
 
     }
@@ -79,14 +79,22 @@ public class SwapReferences : EditorWindow
         string firstName = firstObject.name;
         string secondName = secondObject.name;
         Object tempObject = Object.Instantiate(firstObject);
-		
+	
+	if (tempObject is Mesh tempMesh)//Meshæ¯”è¾ƒç‰¹æ®Šï¼ŒCopyä¹‹å‰è¦å…ˆClearæ‰(ä¸ç„¶,é¡¶ç‚¹ä½ç½®ä¸ä¼šæ›´æ”¹)
+            tempMesh.Clear(false);
         EditorUtility.CopySerialized(firstObject, tempObject);
+
+        if (firstObject is Mesh firstMesh)
+            firstMesh.Clear(false);
         EditorUtility.CopySerialized(secondObject, firstObject);
+
+ 	if (secondObject is Mesh secondMesh)
+            secondMesh.Clear(false);
         EditorUtility.CopySerialized(tempObject, secondObject);
 
         DestroyImmediate(tempObject, true);
 
-        //»Ö¸´Ãû³Æ
+        //æ¢å¤åç§°
         firstObject.name = firstName;
         secondObject.name = secondName;
         #endregion
