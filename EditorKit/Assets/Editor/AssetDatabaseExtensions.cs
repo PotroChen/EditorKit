@@ -1,6 +1,7 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using DG.DemiEditor;
 using UnityEditor;
 using UnityEngine;
 
@@ -15,6 +16,14 @@ public static class AssetDatabaseExtensions
     /// <returns></returns>
     public static Object CreateOrReplaceAsset(Object asset, string path)
     {
+        string assetPath = AssetDatabase.GetAssetPath(asset);
+        //说明Asset是asset不是一个instance,如果asset存到新路径会报错，创建一个instance
+        if (!string.IsNullOrEmpty(assetPath))
+        {
+            asset = UnityEngine.Object.Instantiate(asset);
+            asset.name = asset.name.Replace("(Clone)","");
+        }
+
         var serializedAsset = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(path);
         if (serializedAsset != null)
         {
