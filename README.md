@@ -1,12 +1,13 @@
-# AttributeCollection
+# README
 ## 简介：
-收集一些在工作中写的CustomAttribute。
+收集一些在工作中写的Utils
 ## 目录：
 [1.FloatRange](#FloatRange)  
 [2.EnumFlags](#EnumFlags)  
 [3.EnumToInt](#EnumToInt)  
 [4.FolderPath](#FolderPath)  
 [5.SortingLayer](#SortingLayer)  
+[6.AssetHash](#AssetHash)  
 ## <span id="FloatRange">FloatRange</span>
 很简单的一个结构体，写个属性方便编辑。
 ```csharp
@@ -73,3 +74,5 @@ public TargetProperty EnumFlagsExample;
 
 ![SortingLayer](./images/SortingLayer_01.png)
 
+## <span id="AssetHash">AssetHash</span>
+可以在Library创建一个Cache，记录资源是否变化，用于不同模块对比资源是否变化。
